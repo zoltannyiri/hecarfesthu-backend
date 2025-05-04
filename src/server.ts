@@ -218,6 +218,11 @@ async function sendEmail(to: string, subject: string, html: string): Promise<voi
 
 // Google Drive konfiguráció
 const KEYFILEPATH = path.join(__dirname, 'hecarfest-vip-1c7e3c451f3f.json');
+// const authDrive = new googleApis.auth.GoogleAuth({
+//     keyFile: KEYFILEPATH,
+//     scopes: ['https://www.googleapis.com/auth/drive']
+// });
+
 const authDrive = new googleApis.auth.GoogleAuth({
     keyFile: KEYFILEPATH,
     scopes: ['https://www.googleapis.com/auth/drive']

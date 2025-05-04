@@ -222,7 +222,7 @@ async function sendEmail(to: string, subject: string, html: string): Promise<voi
 //     keyFile: KEYFILEPATH,
 //     scopes: ['https://www.googleapis.com/auth/drive']
 // });
-const KEYFILEPATH = '/opt/render/project/src/.secret/hecarfest-vip-1c7e3c451f3f.json';
+const KEYFILEPATH = './hecarfest-vip-1c7e3c451f3f.json';
 const authDrive = new googleApis.auth.GoogleAuth({
     keyFile: KEYFILEPATH,
     scopes: ['https://www.googleapis.com/auth/drive']

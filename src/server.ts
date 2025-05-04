@@ -217,11 +217,23 @@ async function sendEmail(to: string, subject: string, html: string): Promise<voi
 }
 
 // Google Drive konfiguráció
-const KEYFILEPATH = path.join(__dirname, 'hecarfest-vip-1c7e3c451f3f.json');
+// const KEYFILEPATH = path.join(__dirname, 'hecarfest-vip-1c7e3c451f3f.json');
+// const authDrive = new googleApis.auth.GoogleAuth({
+//     keyFile: KEYFILEPATH,
+//     scopes: ['https://www.googleapis.com/auth/drive']
+// });
+
 const authDrive = new googleApis.auth.GoogleAuth({
-    keyFile: KEYFILEPATH,
+    credentials: {
+        type: "service_account",
+        project_id: "hecarfest-vip",
+        private_key_id: process.env.GOOGLE_PRIVATE_KEY_ID,
+        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        client_id: process.env.GOOGLE_CLIENT_ID,
+    },
     scopes: ['https://www.googleapis.com/auth/drive']
-});
+  });
 
 const drive = googleApis.drive({ version: 'v3', auth: authDrive });
 

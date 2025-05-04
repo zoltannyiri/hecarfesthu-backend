@@ -19,20 +19,32 @@ dotenv.config({
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
 
-// CORS konfiguráció
-const allowedOrigins = ['http://localhost:4200', 'https://hecarfest.eu'];
-app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-    return callback(new Error('Not allowed by CORS'));
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+// Frissítsd a CORS konfigurációt
+const allowedOrigins = [
+    'http://localhost:4200',
+    'https://hecarfest.eu',
+    'https://www.hecarfest.eu',
+    'https://hecarfesthu-backend.onrender.com'
+  ];
+  
+  const corsOptions: cors.CorsOptions = {
+    origin: (origin, callback) => {
+      // Engedélyezze a null origin-t (pl. Postman kérések)
+      if (!origin) return callback(null, true);
+      
+      if (allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    exposedHeaders: ['Authorization']
+  };
+  
+  app.use(cors(corsOptions));
 
 // Middleware
 app.use(express.json());

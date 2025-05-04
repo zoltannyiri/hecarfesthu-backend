@@ -557,11 +557,17 @@ app.post('/api/vip-registration',
                 message: 'Sikeres regisztráció! Hamarosan értesítünk e-mailben.'
             });
         } catch (error) {
-            console.error('Regisztrációs hiba:', error);
+            console.error('RÉSZLETES REGISZTRÁCIÓS HIBA:', {
+                message: (error instanceof Error) ? error.message : 'Ismeretlen hiba',
+                stack: error instanceof Error ? error.stack : 'No stack available',
+                requestBody: req.body,
+                files: req.files
+            });
+            
             res.status(500).json({
                 success: false,
                 message: 'Hiba történt a regisztráció során',
-                error: (error as Error).message
+                error: error instanceof Error ? error.message : 'Ismeretlen hiba'  // Explicit hibaüzenet küldése
             });
         }
     }

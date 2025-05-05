@@ -258,7 +258,7 @@ async function uploadToDrive(file: Express.Multer.File): Promise<string> {
             },
         });
 
-        return `https://lh3.googleusercontent.com/d/${response.data.id}=s1000`;
+        return `https://lh3.googleusercontent.com/d/${response.data.id}`;
     } catch (error) {
         console.error('HIBA a Drive feltöltésnél:', error);
         throw new Error(`Drive feltöltés sikertelen: ${(error as Error).message}`);

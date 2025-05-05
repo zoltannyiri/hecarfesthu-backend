@@ -22,6 +22,8 @@ const PORT = process.env.PORT || 3000;
 // Frissítsd a CORS konfigurációt
 const allowedOrigins = [
     'http://localhost:4200',
+    'http://hecarfest.eu',
+    'http://www.hecarfest.eu',
     'https://hecarfest.eu',
     'https://www.hecarfest.eu',
     'https://hecarfesthu-backend.onrender.com'
@@ -40,7 +42,7 @@ const allowedOrigins = [
     },
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
     exposedHeaders: ['Authorization']
   };
   

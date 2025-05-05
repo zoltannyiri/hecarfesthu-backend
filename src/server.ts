@@ -542,11 +542,11 @@ app.post('/api/vip-registration',
                     'Köszönjük regisztrációdat!',
                     `
                         <h1>Köszönjük, hogy regisztráltál a HéCarFest VIP szektorba!</h1>
-                        <p>Kedves ${firstname} ${lastname},</p>
+                        <p>Kedves,</p>
                         <p>Megkaptuk regisztrációd, hamarosan értesítünk a további információkról.</p>
                         <p><strong>Regisztrációs adataid:</strong></p>
                         <ul>
-                            <li>Név: ${firstname} ${lastname}</li>
+                            <li>Név: ${lastname} ${firstname}</li>
                             <li>Email: ${email}</li>
                             <li>Rendszám: ${licenseplate}</li>
                             <li>Autó típusa: ${cartype}</li>
